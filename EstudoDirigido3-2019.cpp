@@ -7,9 +7,11 @@
 using namespace std;
 
 void apostas(int minimo, int maximo, vector <double> price, int &cartelas, int &dezenas){
+	
+	//teste
 
-    cout << setw(30) << "TABELA DE PREÇOS" << endl << endl
-         << "DEZENAS" << setw(35) << "PREÇO" << endl << endl;
+    cout << setw(30) << "TABELA DE PREÃ‡OS" << endl << endl
+         << "DEZENAS" << setw(35) << "PREÃ‡O" << endl << endl;
 
     for (int a = minimo, b = 0; a <= maximo; a++, b++){
         cout << a << setw(40) << price[b] << endl;
@@ -22,11 +24,11 @@ void apostas(int minimo, int maximo, vector <double> price, int &cartelas, int &
         cin >> cartelas;
     }while(cartelas <= 0);
 
-    cout << endl << "Sendo o mínimo " << minimo << " e o máximo " << maximo <<", quantas dezenas deseja apostar? ";
+    cout << endl << "Sendo o mÃ­nimo " << minimo << " e o mÃ¡ximo " << maximo <<", quantas dezenas deseja apostar? ";
     cin >> dezenas;
 
     while (dezenas < minimo || dezenas > maximo){
-        cout << "Insira um valor válido: ";
+        cout << "Insira um valor vÃ¡lido: ";
         cin >> dezenas;
     }
 }
@@ -61,9 +63,9 @@ void loterias(int mini, int maxi, int interval, vector <double> precos){
     system("cls"); //se seu dispositivo for Windows
     //system("clear"); //se seu dispositivo for Linux
 
-    cout << endl << "O preço será: R$" << precos[dezena - mini] * cartela << endl << endl;
+    cout << endl << "O preÃ§o serÃ¡: R$" << precos[dezena - mini] * cartela << endl << endl;
 
-    cout << "Os números gerados foram: ";
+    cout << "Os nÃºmeros gerados foram: ";
 
     for(int i = 1; i <= cartela; i++){
 
@@ -75,8 +77,8 @@ void loterias(int mini, int maxi, int interval, vector <double> precos){
             cout << numero << " ";
         }
     }
-    cout << endl << endl << "Boa sorte, você precisará! Mas lembre-se de que tudo que você precisa está dentro de você. A"
-         << endl << "felicidade está nas coisas mais simples, e para isso você não precisa ser milhonárie. =)" << endl;
+    cout << endl << endl << "Boa sorte, vocÃª precisarÃ¡! Mas lembre-se de que tudo que vocÃª precisa estÃ¡ dentro de vocÃª. A"
+         << endl << "felicidade estÃ¡ nas coisas mais simples, e para isso vocÃª nÃ£o precisa ser milhonÃ¡rie. =)" << endl;
 }
 
 int main(){
@@ -92,7 +94,7 @@ int main(){
          << "[1] Mega-Sena" << endl
          << "[2] Quina" << endl
          << "[3] Lotomania" << endl
-         << "[4] Lotofácil"<< endl
+         << "[4] LotofÃ¡cil"<< endl
          << "[0] Sair" << endl << endl;
 
     cin >> jogo;
