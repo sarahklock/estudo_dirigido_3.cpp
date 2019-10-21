@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void apostas(int minimo, int maximo, vector <double> price, int &cartelas, int &dezenas){
+void apostas(int minimo, int maximo, vector <double> price, int &cartelas, vector<int> &dezenas){
 
     cout << setw(30) << "TABELA DE PREÇOS" << endl << endl
          << "DEZENAS" << setw(35) << "PREÇO" << endl << endl;
@@ -24,13 +24,23 @@ void apostas(int minimo, int maximo, vector <double> price, int &cartelas, int &
         cin >> cartelas;
     }while(cartelas <= 0);
 
-    cout << endl << "Sendo o mínimo " << minimo << " e o máximo " << maximo <<", quantas dezenas deseja apostar? ";
-    cin >> dezenas;
-
-    while (dezenas < minimo || dezenas > maximo){
-        cout << "Insira um valor válido: ";
-        cin >> dezenas;
-    }
+    cout << endl << "Sendo o mínimo " << minimo << " e o máximo " << maximo <<", quantas dezenas deseja apostar na: ";
+    
+    for(int j = 0; j < cartelas; j++){
+        
+        int dezens;
+        
+        cout << j + 1 << "ª cartela?" << endl;
+        
+        cin >> dezens;
+        
+        dezenas.push_back(dezens);
+    
+        while (dezenas[j] < minimo || dezenas[j] > maximo){
+            cout << "Insira um valor válido: ";
+            cin >> dezenas[j];
+        }
+    }    
 }
 
 vector <int> numeros_aleatorios(int intervalo, int dezenas){
@@ -44,8 +54,8 @@ vector <int> numeros_aleatorios(int intervalo, int dezenas){
 
         for(int x = 0; x < numeros.size(); x++){
             if((numeros[numeros.size() - 1] == numeros[x]) && (x != numeros.size() - 1)){
-                    numeros.pop_back();
-		    i--;
+                numeros.pop_back();
+		        i--;
             }
         }
     }
@@ -58,28 +68,37 @@ vector <int> numeros_aleatorios(int intervalo, int dezenas){
 
 void loterias(int mini, int maxi, int interval, vector <double> precos){
 
-    int cartela, dezena;
+    int cartela;
+    double preco_total = 0;
+    vector<int> dezena;
     vector <int> numeros;
 
     apostas(mini, maxi, precos, cartela, dezena);
 
     system("cls"); //se seu dispositivo for Windows
     //system("clear"); //se seu dispositivo for Linux
+    
+    for(int dez: dezena){
+        
+        preco_total += precos[dez - mini];
+        
+    }
 
-    cout << endl << "O preço será: R$" << precos[dezena - mini] * cartela << endl << endl;
+    cout << endl << "O preço será: R$" << preco_total << endl << endl;
 
     cout << "Os números gerados foram: ";
 
     for(int i = 1; i <= cartela; i++){
 
         cout << endl << endl << "CARTELA/APOSTA " << i << ":" << endl;
-
-        numeros = numeros_aleatorios(interval ,dezena);
+        
+        numeros = numeros_aleatorios(interval,dezena[i - 1]);
 
         for(int numero: numeros){
             cout << numero << " ";
-        }
+        }    
     }
+    
     cout << endl << endl << "Boa sorte, você precisará! Mas lembre-se de que tudo que você precisa está dentro de você. A"
          << endl << "felicidade está nas coisas mais simples, e para isso você não precisa ser milhonárie. =)" << endl;
 }
