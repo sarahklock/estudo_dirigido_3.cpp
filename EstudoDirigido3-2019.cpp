@@ -72,7 +72,7 @@ void loterias(int mini, int maxi, int interval, vector <double> precos){
 
         numeros = numeros_aleatorios(interval ,dezena);
 
-        for(numero: numeros){
+        for(int numero: numeros){
             cout << numero << " ";
         }
     }
