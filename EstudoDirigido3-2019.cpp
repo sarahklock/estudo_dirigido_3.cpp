@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <iomanip>
 #include <algorithm>
+#include <stdlib.h>
+#include <ctime>
 
 using namespace std;
 
@@ -36,6 +38,8 @@ vector <int> numeros_aleatorios(int intervalo, int dezenas){
     vector <int> numeros;
 
     for(int i = 0; i < dezenas; i++){
+        
+        srand(time(NULL));
         numeros.push_back(rand() % intervalo + 1);
 
         for(int x = 0; x < numeros.size(); x++){
